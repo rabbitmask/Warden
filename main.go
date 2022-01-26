@@ -1,13 +1,14 @@
 package main
 
 import (
-	"Warden/Redis"
+	"Warden/Elasticsearch"
 	"fmt"
 )
 
 func main() {
-	Redis.Saveip("1.1.8.8")
+	//Redis.Saveip("1.1.8.8")
 	//Redis.Redis_test()
+	Elasticsearch.Estest()
 }
 
 func checkErr(err error) {
