@@ -30,3 +30,6 @@ ES集群拉取源数据   ====>  数据清洗与资产关联  ====>  重构ES数
 Yes and no. Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of “interface” in Go provides a different approach that we believe is easy to use and in some ways more general. There are also ways to embed types in other types to provide something analogous — but not identical — to subclassing. Moreover, methods in Go are more general than in C++ or Java: they can be defined for any sort of data, even built-in types such as plain, “unboxed” integers. They are not restricted to structs (classes).
 Also, the lack of a type hierarchy makes “objects” in Go feel much more lightweight than in languages such as C++ or Java.
 ```
+
+睡了12天，，所以，这算，，第二天？？？
+ES完成初步封装，完成增查功能，目标导入 - redis - 爬虫 - 清洗 -入库ES - 数据查询 的布局大致初步成型
