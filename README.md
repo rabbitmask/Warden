@@ -33,3 +33,6 @@ Also, the lack of a type hierarchy makes “objects” in Go feel much more ligh
 
 睡了12天，，所以，这算，，第二天？？？
 ES完成初步封装，完成增查功能，目标导入 - redis - 爬虫 - 清洗 -入库ES - 数据查询 的布局大致初步成型
+
+发了一周🔥，继续继续，所以，第三天？
+各种轮子基本完成，准备边拼装边解决小bug
