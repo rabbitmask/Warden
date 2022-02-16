@@ -9,11 +9,14 @@ import (
 )
 
 type Data struct {
-	Ip      string
-	Port    int
-	Country string
-	City    string
-	Date    time.Time
+	Ip          string
+	Port        int
+	Country     string
+	Subdivision string
+	City        string
+	ISO         string
+	Coordinates string
+	Date        time.Time
 }
 
 var client *elastic.Client
@@ -22,7 +25,7 @@ var host = "http://192.168.20.31:9200"
 //数据存储
 func Datasave() {
 	//使用结构体
-	data := Data{Ip: "8.8.8.8", Port: 80, Country: "china", City: "shandong", Date: time.Now()}
+	data := Data{Ip: "8.8.8.8", Port: 80, Country: "China", Subdivision: "Shandong", City: "Jinan", ISO: "CN", Coordinates: "36.6683, 116.9972", Date: time.Now()}
 	_, err := client.Index().Index("test").BodyJson(data).Do(context.Background())
 	checkErr(err)
 
