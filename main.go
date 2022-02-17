@@ -19,20 +19,33 @@ func main() {
 	//Redis.Saveip("1.1.8.8")
 	//Redis.Redis_test()
 	//Elasticsearch.Estest()
-	//Crawl.Getdata("http://42.245.198.188")
+	//Crawl.Getdata("http://192.168.20.30")
+
 	Console.Console()
+
+	//gethosts, err := Console.Gethosts("203.93.136.0/22")
+	//if err != nil {
+	//	return
+	//}
+	//for _, num := range gethosts {
+	//	println(num)
+
+	//Warden_api.Querytest()
 	//test()
 	//Console.Getip()
 	//Redis.Getip()
 	//Console.Ipread()
-	//Console.GetAddress("27.211.25.204")
+	//Wash.GetAddress("27.211.25.204")
+	//address:=GetAddress(ip)
 	//Console.Mynmap()
-}
 
-func checkErr(err error) {
-	if err != nil {
-		fmt.Println(err.Error())
-		return
-	}
+	//Console.Ipread()
 
+	//
+	//func checkErr(err error) {
+	//	if err != nil {
+	//		fmt.Println(err.Error())
+	//		return
+	//	}
+	//
 }

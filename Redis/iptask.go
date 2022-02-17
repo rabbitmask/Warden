@@ -71,6 +71,30 @@ func Saveip(ip string) {
 	}
 }
 
+func Resetip(ip string, x int) {
+	conn, err := redis.Dial("tcp", "192.168.20.31:6379")
+	checkErr(err)
+	//fmt.Println("Redis 连接成功")
+	defer func(conn redis.Conn) {
+		err := conn.Close()
+		if err != nil {
+			fmt.Println("Redis 连接失败")
+		}
+	}(conn)
+
+	err = conn.Send("auth", "wings")
+	if err != nil {
+		fmt.Println("Redis 认证失败")
+	}
+
+	_, err = conn.Do("SET", ip, x, "EX", "86400") // 1 天=86400 秒  30 天=2592000 秒
+
+	if err != nil {
+		fmt.Println(err.Error())
+	} else {
+	}
+}
+
 func Getip() {
 	conn, err := redis.Dial("tcp", "192.168.20.31:6379")
 	checkErr(err)
@@ -94,7 +118,10 @@ func Getip() {
 		checkErr(err)
 		//fmt.Println(v)
 		if v == 0 {
-			Wash.Mytask(val[i])
+			ch := make(chan int, 1)
+			go Wash.Mytask(val[i], ch)
+			x := <-ch
+			Resetip(val[i], x)
 		}
 	}
 }

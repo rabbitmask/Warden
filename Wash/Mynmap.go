@@ -2,14 +2,15 @@ package Wash
 
 import (
 	"context"
+	"fmt"
 	"github.com/Ullaakut/nmap/v2"
-	"log"
 	"strconv"
 	"time"
 )
 
 func Mynmap(ip string) []map[string]string {
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	fmt.Println("nmap start :" + ip)
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Minute)
 	defer cancel()
 
 	scanner, err := nmap.NewScanner(
@@ -18,17 +19,18 @@ func Mynmap(ip string) []map[string]string {
 		nmap.WithContext(ctx),
 	)
 	if err != nil {
-		log.Fatalf("unable to create nmap scanner: %v", err)
+		fmt.Println("unable to create nmap scanner: %v", err)
 	}
 	result, warnings, err := scanner.Run()
 	if err != nil {
-		log.Fatalf("unable to run nmap scan: %v", err)
+		fmt.Println("unable to run nmap scan: %v", err)
 	}
 	if warnings != nil {
-		log.Printf("Warnings: \n %v", warnings)
+		fmt.Println("Warnings: \n %v", warnings)
 	}
 
 	// Use the results to print an example output
+	ris := [](map[string]string){}
 	for _, host := range result.Hosts {
 		if len(host.Ports) == 0 || len(host.Addresses) == 0 {
 			continue
@@ -36,7 +38,7 @@ func Mynmap(ip string) []map[string]string {
 
 		//fmt.Printf("Host %q:\n", host.Addresses[0])
 
-		ris := [](map[string]string){}
+		//ris := [](map[string]string){}
 
 		for _, port := range host.Ports {
 			res := make(map[string]string)
@@ -54,9 +56,9 @@ func Mynmap(ip string) []map[string]string {
 			//fmt.Printf("\tPort %d/%s %s %s\n", port.ID, port.Protocol, port.State, port.Service.Name)
 		}
 		//fmt.Println(ris)
-		return ris
+		//return ris
 
 	}
 	//fmt.Printf("Nmap done: %d hosts up scanned in %3f seconds\n", len(result.Hosts), result.Stats.Finished.Elapsed)
-	return nil
+	return ris
 }

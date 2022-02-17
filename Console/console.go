@@ -16,7 +16,7 @@ func Ipread() {
 	//}
 	//fmt.Println(string(file))
 
-	f, err := os.Open("Target/ip.txt")
+	f, err := os.Open("Target/ip2.txt")
 	if err != nil {
 		panic(err)
 	}
@@ -28,8 +28,8 @@ func Ipread() {
 		if err != nil || io.EOF == err {
 			break
 		}
-		fmt.Println(line)
 		line = strings.Replace(line, "\n", "", -1)
+		fmt.Println(line)
 		Redis.Saveip(line)
 	}
 }
